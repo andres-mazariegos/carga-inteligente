@@ -1,0 +1,262 @@
+
+            ______________
+           /   |      |   \___
+     _____/____|______|_______\___
+    |  _                   _      |=
+    '-(_)-----------------(_)-----'     CARGA INTELIGENTE · Aveo 2015
+
+  Ruta y repostaje: Chapultepec, Tuxtla Gutiérrez → UP Chiapas
+
+
+======================================================================
+  ESCENARIO 1. En reserva
+  Sale con 0.5 L, casi vacío. Tiene que cargar en el camino.
+======================================================================
+   Litros mínimos para llegar: 1.72 L   |   h(inicio) = $28.90
+
+  Iteraciones de A*:
+   It.   1: (CHAP,  0.50 L)  g =   0.00  h =  28.90  f =  28.90
+   It.   2: (  T1,  0.29 L)  g =   0.00  h =  28.90  f =  28.90
+   It.   3: (  T2,  0.18 L)  g =   0.00  h =  28.90  f =  28.90
+   It.   4: (  T3,  0.09 L)  g =   0.00  h =  28.90  f =  28.90
+   It.   5: (  T3,  1.09 L)  g =  23.79  h =   5.21  f =  29.00
+   It.   6: (  T4,  0.92 L)  g =  23.79  h =   5.21  f =  29.00
+   It.   7: (  T2,  1.18 L)  g =  23.89  h =   5.21  f =  29.10
+   It.   8: (  T3,  1.09 L)  g =  23.89  h =   5.21  f =  29.10
+   It.   9: (  T1,  1.29 L)  g =  23.99  h =   5.21  f =  29.20
+   It.  10: (  T2,  1.18 L)  g =  23.99  h =   5.21  f =  29.20
+   It.  11: (  T2,  0.00 L)  g =   0.00  h =  33.17  f =  33.17
+   It.  12: (  T2,  1.00 L)  g =  23.79  h =   9.48  f =  33.27
+   It.  13: (  T3,  0.91 L)  g =  23.79  h =   9.48  f =  33.27
+   It.  14: (  T4,  0.74 L)  g =  23.79  h =   9.48  f =  33.27
+   It.  15: (  T2,  1.00 L)  g =  23.89  h =   9.48  f =  33.37
+   It.  16: (  T1,  0.07 L)  g =   0.00  h =  34.11  f =  34.11
+   It.  17: (  T1,  1.07 L)  g =  23.89  h =  10.42  f =  34.31
+   It.  18: (  T2,  0.96 L)  g =  23.89  h =  10.42  f =  34.31
+   It.  19: (  T3,  0.87 L)  g =  23.89  h =  10.42  f =  34.31
+   It.  20: (  T4,  0.70 L)  g =  23.89  h =  10.42  f =  34.31
+   It.  21: (  T1,  1.07 L)  g =  23.99  h =  10.42  f =  34.41
+   It.  22: (  T3,  0.75 L)  g =  23.79  h =  13.27  f =  37.06
+   It.  23: (  T4,  0.58 L)  g =  23.79  h =  13.27  f =  37.06
+   It.  24: (  T2,  0.82 L)  g =  23.79  h =  13.74  f =  37.53
+   It.  25: (  T3,  0.73 L)  g =  23.79  h =  13.74  f =  37.53
+   It.  26: (  T4,  0.56 L)  g =  23.79  h =  13.74  f =  37.53
+   It.  27: (  T1,  0.89 L)  g =  23.79  h =  14.69  f =  38.48
+   It.  28: (  T2,  0.78 L)  g =  23.79  h =  14.69  f =  38.48
+   It.  29: (  T3,  0.69 L)  g =  23.79  h =  14.69  f =  38.48
+   It.  30: (  T4,  0.52 L)  g =  23.79  h =  14.69  f =  38.48
+   It.  31: (CHAP,  0.08 L)  g =   0.00  h =  38.85  f =  38.85
+   It.  32: (CHAP,  1.08 L)  g =  23.99  h =  15.16  f =  39.15
+   It.  33: (  T1,  0.87 L)  g =  23.99  h =  15.16  f =  39.15
+   It.  34: (  T2,  0.76 L)  g =  23.99  h =  15.16  f =  39.15
+   It.  35: (  T3,  0.67 L)  g =  23.99  h =  15.16  f =  39.15
+   It.  36: (  T4,  0.50 L)  g =  23.99  h =  15.16  f =  39.15
+   It.  37: (  T1,  0.85 L)  g =  23.89  h =  15.64  f =  39.53
+   It.  38: (  T2,  0.74 L)  g =  23.89  h =  15.64  f =  39.53
+   It.  39: (  T3,  0.65 L)  g =  23.89  h =  15.64  f =  39.53
+   It.  40: (  T4,  0.48 L)  g =  23.89  h =  15.64  f =  39.53
+   It.  41: (  T3,  0.57 L)  g =  23.79  h =  17.53  f =  41.32
+   It.  42: (  T2,  0.66 L)  g =  23.79  h =  17.53  f =  41.32
+   It.  43: (  T4,  0.40 L)  g =  23.79  h =  17.53  f =  41.32
+   It.  44: (  T2,  0.64 L)  g =  23.79  h =  18.00  f =  41.79
+   It.  45: (  T3,  0.55 L)  g =  23.79  h =  18.00  f =  41.79
+   It.  46: (  T4,  0.38 L)  g =  23.79  h =  18.00  f =  41.79
+   It.  47: (  T3,  0.53 L)  g =  23.89  h =  18.48  f =  42.37
+   It.  48: (  T4,  0.36 L)  g =  23.89  h =  18.48  f =  42.37
+   It.  49: (  T1,  0.71 L)  g =  23.79  h =  18.95  f =  42.74
+   It.  50: (  T2,  0.60 L)  g =  23.79  h =  18.95  f =  42.74
+   It.  51: (  T3,  0.51 L)  g =  23.79  h =  18.95  f =  42.74
+   It.  52: (  T4,  0.34 L)  g =  23.79  h =  18.95  f =  42.74
+   It.  53: (  T2,  0.58 L)  g =  23.99  h =  19.43  f =  43.42
+   It.  54: (  T3,  0.49 L)  g =  23.99  h =  19.43  f =  43.42
+   It.  55: (  T4,  0.32 L)  g =  23.99  h =  19.43  f =  43.42
+   It.  56: (  T1,  0.67 L)  g =  23.79  h =  19.90  f =  43.69
+   It.  57: (  T2,  0.56 L)  g =  23.79  h =  19.90  f =  43.69
+   It.  58: (  T3,  0.47 L)  g =  23.79  h =  19.90  f =  43.69
+   It.  59: (  T4,  0.30 L)  g =  23.79  h =  19.90  f =  43.69
+   It.  60: (CHAP,  0.86 L)  g =  23.89  h =  20.37  f =  44.26
+   It.  61: (  T1,  0.65 L)  g =  23.89  h =  20.37  f =  44.26
+   It.  62: (  T2,  0.54 L)  g =  23.89  h =  20.37  f =  44.26
+   It.  63: (  T3,  0.45 L)  g =  23.89  h =  20.37  f =  44.26
+   It.  64: (  T4,  0.28 L)  g =  23.89  h =  20.37  f =  44.26
+   It.  65: (  T1,  0.63 L)  g =  23.89  h =  20.85  f =  44.74
+   It.  66: (  T2,  0.52 L)  g =  23.89  h =  20.85  f =  44.74
+   It.  67: (  T3,  0.43 L)  g =  23.89  h =  20.85  f =  44.74
+   It.  68: (  T4,  0.26 L)  g =  23.89  h =  20.85  f =  44.74
+   It.  69: (  T3,  0.41 L)  g =  23.79  h =  21.32  f =  45.11
+   It.  70: (  T4,  0.24 L)  g =  23.79  h =  21.32  f =  45.11
+   It.  71: (  T3,  0.39 L)  g =  23.79  h =  21.79  f =  45.58
+   It.  72: (  T2,  0.48 L)  g =  23.79  h =  21.79  f =  45.58
+   It.  73: (  T4,  0.22 L)  g =  23.79  h =  21.79  f =  45.58
+   It.  74: (  J1,  0.73 L)  g =  23.79  h =  22.27  f =  46.06
+   It.  75: (  T2,  0.46 L)  g =  23.79  h =  22.27  f =  46.06
+   It.  76: (  T3,  0.37 L)  g =  23.79  h =  22.27  f =  46.06
+   It.  77: (  T4,  0.20 L)  g =  23.79  h =  22.27  f =  46.06
+   It.  78: (  T3,  0.35 L)  g =  23.79  h =  22.74  f =  46.53
+   It.  79: (  T1,  0.55 L)  g =  23.79  h =  22.74  f =  46.53
+   It.  80: (  T4,  0.18 L)  g =  23.79  h =  22.74  f =  46.53
+   It.  81: (  T2,  0.44 L)  g =  23.79  h =  22.74  f =  46.53
+   It.  82: (  T1,  0.53 L)  g =  23.79  h =  23.22  f =  47.01
+   It.  83: (  T2,  0.42 L)  g =  23.79  h =  23.22  f =  47.01
+   It.  84: (  T3,  0.33 L)  g =  23.79  h =  23.22  f =  47.01
+   It.  85: (  T4,  0.16 L)  g =  23.79  h =  23.22  f =  47.01
+   It.  86: (  T4,  1.92 L)  g =  47.48  h =   0.00  f =  47.48
+   It.  87: (  T4,  1.74 L)  g =  47.48  h =   0.00  f =  47.48
+   It.  88: (  T4,  1.58 L)  g =  47.48  h =   0.00  f =  47.48
+   It.  89: (  T4,  1.56 L)  g =  47.48  h =   0.00  f =  47.48
+   It.  90: (  T4,  1.52 L)  g =  47.48  h =   0.00  f =  47.48
+   It.  91: (  T4,  1.40 L)  g =  47.48  h =   0.00  f =  47.48
+   It.  92: (  T4,  1.38 L)  g =  47.48  h =   0.00  f =  47.48
+   It.  93: (  T4,  1.34 L)  g =  47.48  h =   0.00  f =  47.48
+   It.  94: (  T4,  1.30 L)  g =  47.48  h =   0.00  f =  47.48
+   It.  95: (  T4,  1.24 L)  g =  47.48  h =   0.00  f =  47.48
+   It.  96: (  T4,  1.22 L)  g =  47.48  h =   0.00  f =  47.48
+   It.  97: (  T4,  1.20 L)  g =  47.48  h =   0.00  f =  47.48
+   It.  98: (  T4,  1.18 L)  g =  47.48  h =   0.00  f =  47.48
+   It.  99: (  T4,  1.16 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 100: (  T3,  1.75 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 101: (SUCH,  0.99 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 102: (  T3,  1.57 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 103: (SUCH,  0.81 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 104: (  T3,  1.41 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 105: (SUCH,  0.65 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 106: (  T3,  1.39 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 107: (SUCH,  0.63 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 108: (  T3,  1.35 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 109: (SUCH,  0.59 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 110: (SUCH,  0.47 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 111: (SUCH,  0.45 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 112: (SUCH,  0.41 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 113: (SUCH,  0.37 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 114: (SUCH,  0.31 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 115: (SUCH,  0.29 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 116: (SUCH,  0.27 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 117: (SUCH,  0.25 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 118: (SUCH,  0.23 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 119: (  T2,  1.66 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 120: (  T4,  1.58 L)  g =  47.48  h =   0.00  f =  47.48
+   It. 121: (  UP,  0.78 L)  g =  47.48  h =   0.00  f =  47.48
+
+  Plan óptimo encontrado por A*:
+    1. → Ir a Gasolinera Terán Blvd. Belisario Domínguez
+    2. → Ir a Pemex 1a Av. Sur Poniente
+    3. → Ir a Gasolinera Terán Calz. Emiliano Zapata
+    4. ⛽ Cargar 1 L en Gasolinera Terán Calz. Emiliano Zapata ($23.79)
+    5. → Ir a Pemex Santa Elena (Libramiento Sur Pte.)
+    6. ⛽ Cargar 1 L en Pemex Santa Elena (Libramiento Sur Pte.) ($23.69)
+    7. → Ir a Gasolinera entrada de Suchiapa
+    8. → Ir a UP Chiapas
+
+   Gasto total: $47.48   |   Llega a la meta con 0.78 L
+   Ruta: CHAP → T1 → T2 → T3 → T4 → SUCH → UP
+
+  Comparación de algoritmos:
+   ------------------------------------------------------------------
+   Algoritmo  Gasto ($)  Expandidos  Frontera máx.  Tiempo ms  Óptimo
+   ------------------------------------------------------------------
+   BFS            47.58         364            819       4.99      No
+   UCS            47.48         263            672       3.22      Sí
+   Greedy         47.98         204            513       2.37      No
+   A*             47.48         121            372       1.81      Sí
+   ------------------------------------------------------------------
+   Gráfica guardada en: comparacion_escenario_1.png
+
+   Ver la ruta en Google Maps:
+   https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=Chapultepec+%28casa%29%2C+Chiapas&destination=UP+Chiapas%2C+Chiapas&waypoints=Gasolinera+Ter%C3%A1n+Blvd.+Belisario+Dom%C3%ADnguez%2C+Chiapas%7CPemex+1a+Av.+Sur+Poniente%2C+Chiapas%7CGasolinera+Ter%C3%A1n+Calz.+Emiliano+Zapata%2C+Chiapas%7CPemex+Santa+Elena+%28Libramiento+Sur+Pte.%29%2C+Chiapas%7CGasolinera+entrada+de+Suchiapa%2C+Chiapas
+
+======================================================================
+  ESCENARIO 2. Tanque suficiente
+  Sale con 5 L. Le alcanza para todo el viaje.
+======================================================================
+   Litros mínimos para llegar: 1.72 L   |   h(inicio) = $0.00
+
+  Plan óptimo encontrado por A*:
+    1. → Ir a Gasolinera Gamboa (Calz. Samuel León Brindis)
+    2. → Ir a Gasolinera El Jobo (km 5.5)
+    3. → Ir a Gasolinera entrada de Suchiapa
+    4. → Ir a UP Chiapas
+
+   Gasto total: $0.00   |   Llega a la meta con 2.48 L
+   Ruta: CHAP → J1 → J2 → SUCH → UP
+
+  Comparación de algoritmos:
+   ------------------------------------------------------------------
+   Algoritmo  Gasto ($)  Expandidos  Frontera máx.  Tiempo ms  Óptimo
+   ------------------------------------------------------------------
+   BFS             0.00         141            369       1.38      Sí
+   UCS             0.00          54            203       0.61      Sí
+   Greedy          0.00         138            358       1.22      Sí
+   A*              0.00          51            192       0.57      Sí
+   ------------------------------------------------------------------
+   Gráfica guardada en: comparacion_escenario_2.png
+
+   Ver la ruta en Google Maps:
+   https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=Chapultepec+%28casa%29%2C+Chiapas&destination=UP+Chiapas%2C+Chiapas&waypoints=Gasolinera+Gamboa+%28Calz.+Samuel+Le%C3%B3n+Brindis%29%2C+Chiapas%7CGasolinera+El+Jobo+%28km+5.5%29%2C+Chiapas%7CGasolinera+entrada+de+Suchiapa%2C+Chiapas
+
+======================================================================
+  ESCENARIO 3. Obra en el Libramiento Sur
+  Sale con 0.5 L y el tramo Calz. Emiliano Zapata – Santa Elena está cerrado.
+======================================================================
+   Litros mínimos para llegar: 2.52 L   |   h(inicio) = $47.85
+
+  Plan óptimo encontrado por A*:
+    1. → Ir a Gasolinera Terán Blvd. Belisario Domínguez
+    2. → Ir a Pemex 1a Av. Sur Poniente
+    3. → Ir a Gasolinera Terán Calz. Emiliano Zapata
+    4. ⛽ Cargar 3 L en Gasolinera Terán Calz. Emiliano Zapata ($71.37)
+    5. → Ir a Gasolinera Gamboa (Calz. Samuel León Brindis)
+    6. → Ir a Gasolinera El Jobo (km 5.5)
+    7. → Ir a Gasolinera entrada de Suchiapa
+    8. → Ir a UP Chiapas
+
+   Gasto total: $71.37   |   Llega a la meta con 0.85 L
+   Ruta: CHAP → T1 → T2 → T3 → J1 → J2 → SUCH → UP
+
+  Comparación de algoritmos:
+   ------------------------------------------------------------------
+   Algoritmo  Gasto ($)  Expandidos  Frontera máx.  Tiempo ms  Óptimo
+   ------------------------------------------------------------------
+   BFS            71.97         505            994       5.19      No
+   UCS            71.37        1253           2567      12.69      Sí
+   Greedy         71.97         132            302       1.22      No
+   A*             71.37         335            824       3.48      Sí
+   ------------------------------------------------------------------
+   Gráfica guardada en: comparacion_escenario_3.png
+
+   Ver la ruta en Google Maps:
+   https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=Chapultepec+%28casa%29%2C+Chiapas&destination=UP+Chiapas%2C+Chiapas&waypoints=Gasolinera+Ter%C3%A1n+Blvd.+Belisario+Dom%C3%ADnguez%2C+Chiapas%7CPemex+1a+Av.+Sur+Poniente%2C+Chiapas%7CGasolinera+Ter%C3%A1n+Calz.+Emiliano+Zapata%2C+Chiapas%7CGasolinera+Gamboa+%28Calz.+Samuel+Le%C3%B3n+Brindis%29%2C+Chiapas%7CGasolinera+El+Jobo+%28km+5.5%29%2C+Chiapas%7CGasolinera+entrada+de+Suchiapa%2C+Chiapas
+
+======================================================================
+  ESCENARIO 4. Promoción en El Jobo
+  Sale con 0.5 L y la Gasolinera Gamboa tiene la Magna a $21.49.
+======================================================================
+   Litros mínimos para llegar: 1.72 L   |   h(inicio) = $26.22
+
+  Plan óptimo encontrado por A*:
+    1. → Ir a Gasolinera Terán Blvd. Belisario Domínguez
+    2. → Ir a Pemex 1a Av. Sur Poniente
+    3. → Ir a Gasolinera Terán Calz. Emiliano Zapata
+    4. ⛽ Cargar 1 L en Gasolinera Terán Calz. Emiliano Zapata ($23.79)
+    5. → Ir a Gasolinera Gamboa (Calz. Samuel León Brindis)
+    6. ⛽ Cargar 1 L en Gasolinera Gamboa (Calz. Samuel León Brindis) ($21.49)
+    7. → Ir a Gasolinera Terán Calz. Emiliano Zapata
+    8. → Ir a Pemex Santa Elena (Libramiento Sur Pte.)
+    9. → Ir a Gasolinera entrada de Suchiapa
+   10. → Ir a UP Chiapas
+
+   Gasto total: $45.28   |   Llega a la meta con 0.06 L
+   Ruta: CHAP → T1 → T2 → T3 → J1 → T3 → T4 → SUCH → UP
+
+  Comparación de algoritmos:
+   ------------------------------------------------------------------
+   Algoritmo  Gasto ($)  Expandidos  Frontera máx.  Tiempo ms  Óptimo
+   ------------------------------------------------------------------
+   BFS            47.58         364            819       3.66      No
+   UCS            45.28         333            810       3.35      Sí
+   Greedy         47.98         204            513       2.04      No
+   A*             45.28          90            299       1.01      Sí
+   ------------------------------------------------------------------
+   Gráfica guardada en: comparacion_escenario_4.png
+
+   Ver la ruta en Google Maps:
+   https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=Chapultepec+%28casa%29%2C+Chiapas&destination=UP+Chiapas%2C+Chiapas&waypoints=Gasolinera+Ter%C3%A1n+Blvd.+Belisario+Dom%C3%ADnguez%2C+Chiapas%7CPemex+1a+Av.+Sur+Poniente%2C+Chiapas%7CGasolinera+Ter%C3%A1n+Calz.+Emiliano+Zapata%2C+Chiapas%7CGasolinera+Gamboa+%28Calz.+Samuel+Le%C3%B3n+Brindis%29%2C+Chiapas%7CGasolinera+Ter%C3%A1n+Calz.+Emiliano+Zapata%2C+Chiapas%7CPemex+Santa+Elena+%28Libramiento+Sur+Pte.%29%2C+Chiapas%7CGasolinera+entrada+de+Suchiapa%2C+Chiapas
