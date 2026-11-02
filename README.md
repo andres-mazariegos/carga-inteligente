@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/img/aveo.png" width="280" alt="Aveo"></p>
+﻿<p align="center"><img src="docs/img/aveo.png" width="280" alt="Aveo"></p>
 
 <h1 align="center">Carga Inteligente</h1>
 <p align="center"><b>¿Por dónde ir, dónde cargar gasolina y cuántos litros?</b><br>
@@ -96,4 +96,4 @@ carga-inteligente/
 Proyecto de **Fundamentos de Inteligencia Artificial** — Universidad Politécnica de Chiapas, 7° "C", 2026.
 
 - **Carlos Andrés Mazariegos Laguna** — [@andres-mazariegos](https://github.com/andres-mazariegos)
-- **Axel Rodrigo Cuc López** — [@USUARIO_DE_AXEL](https://github.com/USUARIO_DE_AXEL)
+- **Axel Rodrigo Cuc López** — [@AxelCuc](https://github.com/AxelCuc)
