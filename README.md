@@ -49,6 +49,8 @@ En el mapa, cada lugar se oscurece según cuántas veces se expandió (`×n`). A
 
 `buscar()` recibe un parámetro opcional `traza` donde guarda cada iteración; la interfaz solo lo lee, el método de búsqueda sigue separado.
 
+![Exploración de A*](docs/img/exploracion.png)
+
 ## Resultados (5 escenarios)
 
 | Escenario | Plan de A* | Gasto | Expandidos A* / UCS |
