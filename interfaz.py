@@ -15,8 +15,8 @@ import tkinter as tk
 import webbrowser
 from tkinter import ttk, messagebox
 
-from busqueda import (ESCENARIOS, NOMBRES, PRECIOS_BASE, TRAMOS, Escenario,
-                      lugares_del_plan, resolver)
+from busqueda import (ALGORITMOS, ESCENARIOS, NOMBRES, PRECIOS_BASE, TRAMOS, Escenario,
+                      Problema, buscar, lugares_del_plan, resolver)
 from carga_inteligente import enlace_google_maps
 
 # Posición (x, y) de cada nodo en el dibujo del mapa
@@ -38,6 +38,8 @@ class Aplicacion(tk.Tk):
         self.paso = 0                # paso que se está mostrando
         self.escenario = None        # último escenario leído
         self.ultimo = None           # último resultado de A*
+        self.traza = []              # fotos de cada iteración (exploración de la búsqueda)
+        self.modo = "plan"           # "plan" = ejecución del plan · "explora" = exploración
         self._estilos()
         self._crear_entradas()
         self._crear_salidas()
@@ -152,6 +154,26 @@ class Aplicacion(tk.Tk):
         self.lbl_paso = ttk.Label(ej, text="Paso 0 / 0", font=("Arial", 10, "bold"))
         self.lbl_paso.pack(anchor="w", pady=(4, 0))
 
+        # Controles para ver CÓMO EXPLORA la búsqueda (iteración por iteración)
+        ex = ttk.LabelFrame(der, text="Exploración de la búsqueda (qué revisa el algoritmo en cada iteración)", padding=4)
+        ex.pack(fill="x", pady=2)
+        fila = ttk.Frame(ex)
+        fila.pack(fill="x")
+        ttk.Label(fila, text="Algoritmo:").pack(side="left")
+        self.alg_ex = ttk.Combobox(fila, state="readonly", width=8, values=list(ALGORITMOS))
+        self.alg_ex.set("A*")
+        self.alg_ex.pack(side="left", padx=4)
+        self.alg_ex.bind("<<ComboboxSelected>>", lambda e: self.explorar())
+        ttk.Button(fila, text="◀", width=3, command=lambda: self.ver_iteracion(self.iter_actual - 1)).pack(side="left")
+        self.deslizador = ttk.Scale(fila, from_=1, to=1, orient="horizontal", length=300,
+                                    command=self._mover_deslizador)
+        self.deslizador.pack(side="left", padx=4)
+        ttk.Button(fila, text="▶", width=3, command=lambda: self.ver_iteracion(self.iter_actual + 1)).pack(side="left")
+        ttk.Button(fila, text="Animar", command=self.animar_exploracion).pack(side="left", padx=4)
+        self.lbl_ex = ttk.Label(ex, text="Busca un plan para ver la exploración.", font=("Arial", 10, "bold"))
+        self.lbl_ex.pack(anchor="w", pady=(4, 0))
+        self.iter_actual = 1
+
         pestanas = ttk.Notebook(der)
         pestanas.pack(fill="both", expand=True, pady=2)
         self.pestanas = pestanas
@@ -166,11 +188,12 @@ class Aplicacion(tk.Tk):
             self.tabla.column(c, anchor="center", width=110)
         self.tabla.pack(fill="both", expand=True)
         self.txt_iter = self._texto(pestanas, "Iteraciones de A*")
+        self.txt_front = self._texto(pestanas, "Frontera (exploración)")
 
     def _texto(self, pestanas, titulo):
         marco = ttk.Frame(pestanas)
         pestanas.add(marco, text=titulo)
-        t = tk.Text(marco, font=("Consolas", 10), height=8, wrap="none", relief="flat")
+        t = tk.Text(marco, font=("Consolas", 10), height=6, wrap="none", relief="flat")
         barra = ttk.Scrollbar(marco, command=t.yview)
         t.configure(yscrollcommand=barra.set)
         barra.pack(side="right", fill="y")
@@ -271,11 +294,13 @@ class Aplicacion(tk.Tk):
                                  f"   ·   h(inicio) = ${problema.heuristica(problema.inicio):.2f}"
                                  f"\nRuta: {' → '.join(lugares_del_plan(r['nodo']))}")
         self.ir_a(len(self.trayectoria) - 1)        # muestra el plan completo
+        self.explorar(dibujar=False)
 
     def ir_a(self, paso):
         """Muestra el estado del plan en el paso indicado."""
         if not self.trayectoria:
             return
+        self.modo = "plan"
         self.paso = max(0, min(paso, len(self.trayectoria) - 1))
         nodo = self.trayectoria[self.paso]
         accion = nodo.accion or "Estado inicial"
@@ -294,6 +319,64 @@ class Aplicacion(tk.Tk):
                 self.ir_a(self.paso + 1)
                 self.after(800, siguiente)
         self.after(800, siguiente)
+
+    # ================================================================
+    # EXPLORACIÓN: ver qué estados revisa el algoritmo, uno por uno
+    # ================================================================
+    def explorar(self, dibujar=True):
+        """Corre el algoritmo elegido guardando una foto de cada iteración."""
+        if self.escenario is None:
+            return
+        self.traza = []
+        buscar(Problema(self.escenario), self.alg_ex.get(), traza=self.traza)
+        if not self.traza:
+            return
+        self.deslizador.configure(to=len(self.traza))
+        if dibujar:
+            self.ver_iteracion(1)
+        else:
+            self.lbl_ex.config(text=f"{self.alg_ex.get()} hizo {len(self.traza)} iteraciones. "
+                                    "Mueve la barra o presiona «Animar».")
+
+    def ver_iteracion(self, k):
+        """Dibuja en el mapa todo lo explorado hasta la iteración k."""
+        if not self.traza:
+            return
+        self.modo = "explora"
+        self.iter_actual = max(1, min(k, len(self.traza)))
+        if int(float(self.deslizador.get())) != self.iter_actual:
+            self._moviendo = True                     # evita que set() vuelva a llamar a esta función
+            self.deslizador.set(self.iter_actual)
+            self._moviendo = False
+        t = self.traza[self.iter_actual - 1]
+        lugar, litros, cargo = t["estado"]
+        self.lbl_ex.config(text=f"{self.alg_ex.get()} · It. {t['it']}/{len(self.traza)}: expande ({lugar}, "
+                                f"{litros:.2f} L{', ya cargó' if cargo else ''})   g = ${t['g']:.2f}   "
+                                f"h = ${t['h']:.2f}   f = ${t['f']:.2f}   ·   frontera: {t['frontera']} nodos")
+        self.txt_front.delete("1.0", "end")
+        self.txt_front.insert("end", f"Iteración {t['it']}: se sacó de la frontera ({lugar}, {litros:.2f} L)\n\n"
+                                     "Los 5 que siguen en la frontera (el de menor prioridad sale primero):\n")
+        for p, (lu, li, b), g in t["siguientes"]:
+            self.txt_front.insert("end", f"   prioridad {p:7.2f}   ({lu:>4}, {li:5.2f} L{', ya cargó' if b else ''})"
+                                         f"   g = ${g:.2f}\n")
+        self.dibujar_mapa()
+
+    def _mover_deslizador(self, valor):
+        """Se llama cuando el usuario arrastra la barra."""
+        if not getattr(self, "_moviendo", False):
+            self.ver_iteracion(int(float(valor)))
+
+    def animar_exploracion(self):
+        """Avanza sola la exploración, una iteración cada 0.25 s."""
+        if not self.traza:
+            return
+        self.ver_iteracion(1)
+
+        def siguiente():
+            if self.modo == "explora" and self.iter_actual < len(self.traza):
+                self.ver_iteracion(self.iter_actual + 1)
+                self.after(250, siguiente)
+        self.after(250, siguiente)
 
     def abrir_maps(self):
         if self.ultimo is None:
@@ -371,6 +454,7 @@ class Aplicacion(tk.Tk):
         self._carro(x - 31, y - 52)
         if hecho:
             c.create_text(x + 52, y - 40, text=f"{hecho[-1].estado[1]:.2f} L", font=("Arial", 9, "bold"))
+
 
     def _carro(self, x, y):
         """Dibuja un Aveo blanco (vista lateral) con figuras simples."""
