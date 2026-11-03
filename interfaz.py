@@ -31,8 +31,8 @@ class Aplicacion(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Carga Inteligente · Búsqueda A*")
-        self.geometry("1280x800")
-        self.minsize(1150, 760)
+        self.geometry("1280x860")
+        self.minsize(1150, 800)
         self.configure(background="white")
         self.trayectoria = []        # nodos del plan (para ejecutarlo paso a paso)
         self.paso = 0                # paso que se está mostrando
@@ -393,6 +393,9 @@ class Aplicacion(tk.Tk):
         esc = self.escenario
         if esc is None:                                   # antes de la primera búsqueda
             esc = Escenario("", "", 0)
+        if self.modo == "explora" and self.traza:
+            self._dibujar_exploracion(esc)
+            return
         hecho = self.trayectoria[:self.paso + 1]
         lugares_hechos = [n.estado[0] for n in hecho]
         lugares_todos = [n.estado[0] for n in self.trayectoria]
@@ -455,6 +458,44 @@ class Aplicacion(tk.Tk):
         if hecho:
             c.create_text(x + 52, y - 40, text=f"{hecho[-1].estado[1]:.2f} L", font=("Arial", 9, "bold"))
 
+    def _dibujar_exploracion(self, esc):
+        """Mapa en modo exploración: cada lugar se oscurece según cuántas veces se ha expandido."""
+        c = self.canvas
+        k = self.iter_actual
+        cuenta = {}
+        for t in self.traza[:k]:
+            cuenta[t["estado"][0]] = cuenta.get(t["estado"][0], 0) + 1
+        actual = self.traza[k - 1]["estado"][0]
+        cerrados = {frozenset(t) for t in esc.tramos_cerrados}
+        precios = {**PRECIOS_BASE, **esc.precios_especiales}
+        maximo = max(cuenta.values())
+        for a, b, km in TRAMOS:
+            (x1, y1), (x2, y2) = POSICIONES[a], POSICIONES[b]
+            if frozenset((a, b)) in cerrados:
+                c.create_line(x1, y1, x2, y2, fill=NEGRO, dash=(6, 4), width=2)
+                continue
+            visto = a in cuenta and b in cuenta
+            c.create_line(x1, y1, x2, y2, fill="#555555" if visto else GRIS_CLARO, width=3 if visto else 2)
+        for clave, (x, y) in POSICIONES.items():
+            n = cuenta.get(clave, 0)
+            gris = 245 - int(150 * n / maximo) if n else 255     # más oscuro = más veces expandido
+            relleno = f"#{gris:02x}{gris:02x}{gris:02x}"
+            texto = "white" if gris < 150 else NEGRO
+            c.create_rectangle(x - 36, y - 17, x + 36, y + 17, fill=relleno,
+                               outline=NEGRO if n else GRIS, width=4 if clave == actual else 1)
+            c.create_text(x, y - 6, text=clave, font=("Arial", 9, "bold"), fill=texto)
+            sub = f"${precios[clave]:.2f}" if clave in precios else NOMBRES[clave].split(" (")[0][:14]
+            c.create_text(x, y + 7, text=sub, font=("Arial", 8), fill=texto)
+            if n:
+                c.create_text(x + 30, y - 24, text=f"×{n}", font=("Arial", 9, "bold"))
+            if clave == esc.meta:
+                c.create_text(x, y + 26, text="META", font=("Arial", 8, "bold"))
+            if clave == esc.inicio:
+                c.create_text(x, y + 26, text="INICIO", font=("Arial", 8, "bold"))
+        x, y = POSICIONES[actual]
+        self._carro(x - 31, y - 52)
+        c.create_text(380, 345, text="Más oscuro = más veces expandido · ×n = estados revisados en ese lugar · "
+                                     "borde grueso = estado actual", font=("Arial", 8), fill="#555555")
 
     def _carro(self, x, y):
         """Dibuja un Aveo blanco (vista lateral) con figuras simples."""
