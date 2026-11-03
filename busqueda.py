@@ -207,9 +207,11 @@ def prioridad(algoritmo, nodo, h):
     return {"BFS": nodo.pasos, "UCS": nodo.g, "Greedy": h}.get(algoritmo, nodo.g + h)
 
 
-def buscar(problema, algoritmo, registro=None):
+def buscar(problema, algoritmo, registro=None, traza=None):
     """Búsqueda general con frontera ordenada y cycle checking.
-    registro: lista opcional donde se guarda cada iteración (texto)."""
+    registro: lista opcional donde se guarda cada iteración (texto).
+    traza: lista opcional donde se guarda una "foto" de cada iteración
+           (nodo expandido y los 5 primeros de la frontera) para verla en la interfaz."""
     raiz = Nodo(problema.inicio)
     frontera = [(0, 0, raiz)]          # (prioridad, desempate, nodo)
     expandidos = set()                 # cycle checking
@@ -227,6 +229,12 @@ def buscar(problema, algoritmo, registro=None):
             lugar, litros, _ = nodo.estado
             registro.append(f"It. {len(expandidos):3}: ({lugar:>4}, {litros:5.2f} L)"
                             f"  g = {nodo.g:6.2f}  h = {h:6.2f}  f = {nodo.g + h:6.2f}")
+
+        if traza is not None:                         # foto de esta iteración
+            h = problema.heuristica(nodo.estado)
+            traza.append({"it": len(expandidos), "estado": nodo.estado, "g": nodo.g, "h": h,
+                          "f": nodo.g + h, "frontera": len(frontera),
+                          "siguientes": [(p, n.estado, n.g) for p, _, n in heapq.nsmallest(5, frontera)]})
 
         if problema.es_meta(nodo.estado):             # 2) ¿es la meta? (al SACARLA)
             return {"costo": round(nodo.g, 2), "camino": nodo.camino(),
