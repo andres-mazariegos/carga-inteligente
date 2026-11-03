@@ -73,13 +73,26 @@ A* siempre encontró el óptimo (igual que UCS) expandiendo **2 a 4 veces menos 
 
 ## Cómo correrlo
 
-```bash
+**Windows (PowerShell):**
+
+```powershell
 git clone https://github.com/andres-mazariegos/carga-inteligente.git
 cd carga-inteligente
-pip install -r requirements.txt      # opcional, solo para las gráficas
-python carga_inteligente.py          # menú interactivo
-python carga_inteligente.py --todos  # corre los 4 escenarios
-python interfaz.py                   # interfaz gráfica
+py -m pip install -r requirements.txt   # opcional, solo para las gráficas
+py carga_inteligente.py                 # menú interactivo
+py carga_inteligente.py --todos         # corre todos los escenarios
+py interfaz.py                          # interfaz gráfica
+```
+
+**Linux / Kali:**
+
+```bash
+sudo apt install python3-tk             # si no tienes tkinter
+git clone https://github.com/andres-mazariegos/carga-inteligente.git
+cd carga-inteligente
+pip install -r requirements.txt         # opcional
+python3 carga_inteligente.py
+python3 interfaz.py
 ```
 
 Al final te da un enlace de **Google Maps** con la ruta y las paradas, y te pregunta si quieres abrirlo.
