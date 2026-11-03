@@ -1,4 +1,4 @@
-﻿<p align="center"><img src="docs/img/aveo.png" width="280" alt="Aveo"></p>
+<p align="center"><img src="docs/img/aveo.png" width="280" alt="Aveo"></p>
 
 <h1 align="center">Carga Inteligente</h1>
 <p align="center"><b>¿Por dónde ir, dónde cargar gasolina y cuántos litros?</b><br>
@@ -40,6 +40,14 @@ Con `python interfaz.py` se abre una ventana donde puedes escribir **tus propios
 El método de búsqueda vive en `busqueda.py`, separado de la visualización.
 
 ![Interfaz](docs/img/gui_e5.png)
+
+## Vista de exploración
+
+Además de la ruta final, la interfaz tiene una sección para ver **cómo explora la búsqueda**: eliges el algoritmo y con la barra (o el botón **Animar**) recorres **iteración por iteración** qué estado sacó de la frontera, con su `g`, `h` y `f`, y cuántos nodos quedaban pendientes. La pestaña **Frontera (exploración)** muestra los 5 que siguen en la fila.
+
+En el mapa, cada lugar se oscurece según cuántas veces se expandió (`×n`). Así se ve que A* no va en "línea recta": abre varias opciones (cargar o no, cuántos litros, qué tramo tomar) y descarta las caras.
+
+`buscar()` recibe un parámetro opcional `traza` donde guarda cada iteración; la interfaz solo lo lee, el método de búsqueda sigue separado.
 
 ## Resultados (5 escenarios)
 
